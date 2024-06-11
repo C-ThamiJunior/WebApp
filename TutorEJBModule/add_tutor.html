@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Add Tutor Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Add tutor</h1>
+        <p>
+            Please add tutor details below.
+        </p>
+        <form action="AddTutorServlet.do" method="POST" enctype="multipart/form-data">
+            <table>
+                <tr>
+                    <td>Image:</td>
+                    <td><input type="file" name="image" multiple="" accept="image/*" required=""></td>
+                </tr>
+                <tr>
+                    <td>Stuff Number:</td>
+                    <td><input type="text" name="tut_number" required=""></td>
+                </tr>
+                <tr>
+                    <td>Tutor Name:</td>
+                    <td><input type="text" name="tut_name" required=""></td>
+                </tr>
+                <tr>
+                    <td>Tutor Age:</td>
+                    <td><input type="text" name="tut_age" required=""></td>
+                </tr>
+                <tr>
+                    <td>Tutor Gender:</td>
+                    <td>
+                        <select name="tut_gender" required="">
+                            <option></option>
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Subjects:</td>
+                    <td>
+                        <div id="subjets">
+                            <input type="text" name="subjects" required="">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="button" onclick="addJorm()">
+                    </td>
+                </tr>
+                <script>
+                    function addJorm() {
+                        document.getElementById("subjets").insertAdjacentHTML('beforeend', '<input type="text" name="subjects"><br>')
+                    }
+                </script>
+            </table>
+        </form>
+    </body>
+</html>

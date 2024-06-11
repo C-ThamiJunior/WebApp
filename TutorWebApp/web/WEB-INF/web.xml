@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>AddTutorServlet</servlet-name>
+        <servlet-class>za.ac.tut.web.AddTutorServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddTutorServlet</servlet-name>
+        <url-pattern>/AddTutorServlet.do</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <security-constraint>
+        <display-name>ThamiConstraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>thamiResource</web-resource-name>
+            <description>resources that thami can acess</description>
+            <url-pattern>/search_tutor.html</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>thami</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>adminConstraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>adminResource</web-resource-name>
+            <description>admin resources</description>
+            <url-pattern>/add_tutor.html</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>file</realm-name>
+        <form-login-config>
+            <form-login-page>/login.jsp</form-login-page>
+            <form-error-page>/login_error.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <description>is administratve system user</description>
+        <role-name>thami</role-name>
+    </security-role>
+    <security-role>
+        <description>has access to everything</description>
+        <role-name>admin</role-name>
+    </security-role>
+</web-app>
