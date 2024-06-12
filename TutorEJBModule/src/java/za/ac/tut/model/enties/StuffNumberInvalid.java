@@ -5,10 +5,14 @@
  */
 package za.ac.tut.model.enties;
 
+import javax.ejb.EJBException;
+
 /**
  *
  * @author ltham
  */
-public class StuffNumberInvalid {
-    
+public class StuffNumberInvalid extends EJBException{
+    StuffNumberInvalid(String message){
+        super(message);
+    }
 }

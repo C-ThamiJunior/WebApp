@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package za.ac.tut.model.enties;
+package za.ac.tut.model.bl;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import za.ac.tut.model.enties.Tutor;
 
 /**
  *
@@ -28,13 +29,12 @@ public class TutorFacade extends AbstractFacade<Tutor> implements TutorFacadeLoc
     public TutorFacade() {
         super(Tutor.class);
     }
-
-    @Override
+    
+        @Override
     public Long getTotalNumber(String gender) {
         Query q = em.createQuery("SELECT COUNT(t) FROM tutor t WHERE t.gender=:gender");
         q.setParameter("gender", gender);
         Long cnt = (Long) q.getSingleResult();
-        
         return cnt;
     }
 
@@ -43,7 +43,6 @@ public class TutorFacade extends AbstractFacade<Tutor> implements TutorFacadeLoc
         Query q = em.createQuery("SELECT AVG(t) FROM tutor t WHERE t.gender =:gender");
         q.setParameter("gender", gender);
         Double avg = (Double) q.getSingleResult();
-        
         return avg;
     }
 
@@ -51,8 +50,6 @@ public class TutorFacade extends AbstractFacade<Tutor> implements TutorFacadeLoc
     public Tutor getYoungestTutor() {
          Query q = em.createQuery("SELECT t FROM tutor t WHERE t.age=(SELECT MIN(t.age) FROM tutor t)");
          Tutor totor = (Tutor) q.getResultList().get(0);
-         
          return totor;
-    }
-    
+    }   
 }

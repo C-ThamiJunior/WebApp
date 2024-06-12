@@ -8,10 +8,13 @@ package za.ac.tut.model.enties;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 /**
@@ -23,27 +26,29 @@ public class Tutor implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private Integer age;
     private String gender;
+    @ElementCollection
     private List<String> subjects;
-    private List<Byte[]> images;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Image> images;
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date date;
 
-    public Tutor(Long id, String name, Integer age, String gender, List<String> subjects, List<Byte[]> images, Date date) {
+  
+    public Tutor() {
+    }
+
+    public Tutor(Long id, String name, Integer age, String gender, List<String> subjects, List<Image> images) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.subjects = subjects;
         this.images = images;
-        this.date = date;
-    }
-
-    public Tutor() {
+        this.date = new Date();
     }
 
     public String getName() {
@@ -77,15 +82,7 @@ public class Tutor implements Serializable {
     public void setSubjects(List<String> subjects) {
         this.subjects = subjects;
     }
-
-    public List<Byte[]> getImages() {
-        return images;
-    }
-
-    public void setImages(List<Byte[]> images) {
-        this.images = images;
-    }
-
+    
     public Date getDate() {
         return date;
     }

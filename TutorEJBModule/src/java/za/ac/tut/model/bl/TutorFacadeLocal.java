@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package za.ac.tut.model.enties;
+package za.ac.tut.model.bl;
 
 import java.util.List;
 import javax.ejb.Local;
+import za.ac.tut.model.enties.Tutor;
 
 /**
  *
